@@ -1,185 +1,191 @@
 #include<iostream>
 using namespace std;
 
-#define tab  "\t"
-
-void FillRand(int arr[], const int n, int minRand = 0, int maxRand = 100);
-void FillRand(double arr[], const int n, int minRand = 0, int maxRand = 100);
-
-void Print(int arr[], const int n);
-void Print(double arr[], const int n);
-
-void Sort(int arr[], const int n);
-void Sort(double arr[], const int n);
-
-void Sum(int arr[], const int n);
-void Sum(double arr[], const int n);
-
-void SredneeA(int arr[], const int n);
-void SredneeA(double arr[], const int n);
 
 
+void FilRand(int arr[], const int n);
+void FilRand(double arr[], const int n);
+
+template<typename T>
+void Print(T arr[], const int n);
+
+template<typename T>
+void Sort(T arr[], const int n);
+
+template<typename T>
+T Sum(T arr[], const int n);
+
+template<typename T>
+double Avg(T arr[], const int n);
 
 
+template<typename T>
+T MinValueIn(T arr[], const int n);
+
+
+template<typename T>
+T MaxValueIn(T arr[], const int n);
+
+
+template<typename T>
+void ShiftLeft(T arr[], const int n, const int znachenie);
+
+template<typename T>
+void ShiftRight(T arr[], const int n, const int znachenie);
 
 void main()
 {
 	setlocale(LC_ALL, "");
-	const int n = 5;
-	int arr[n];
 
-	FillRand(arr, n);
+
+	const int n = 10;
+	int arr[n] = { 0,1,2,3,4,5,6,7,8,9 };
+
+	FilRand(arr, n);
 	Print(arr, n);
 	Sort(arr, n);
 	Print(arr, n);
-	Sum(arr, n);
-	SredneeA(arr, n);
+	cout << Sum(arr, n) << endl;
+	cout << Avg(arr, n) << endl;
+	cout << MinValueIn(arr, n) << endl;
+	cout << MaxValueIn(arr, n) << endl;
 
+	int znachenie;
+	cout << "vvedite znachenie: ";cin >> znachenie;
+	ShiftLeft(arr, n, znachenie);
+	Print(arr, n);
+
+	ShiftRight(arr, n, znachenie);
+	Print(arr, n);
 
 	const int SIZE = 8;
 	double brr[SIZE];
 
-	FillRand(brr, SIZE);
+	FilRand(brr, SIZE);
 	Print(brr, SIZE);
 	Sort(brr, SIZE);
 	Print(brr, SIZE);
-	Sum(brr, SIZE);
-	SredneeA(brr, SIZE);
-	
-	
+	cout << Sum(brr, SIZE) << endl;
+
+	cout << Avg(brr, SIZE) << endl;
+	cout << MinValueIn(brr, SIZE) << endl;
+	cout << MaxValueIn(brr, SIZE) << endl;
+
 }
 
-
-void FillRand(int arr[], const int n, int minRand, int maxRand)
+void FilRand(int arr[], int n)
 {
 	for (int i = 0; i < n; i++)
 	{
-		arr[i] = rand() % (maxRand - minRand) + minRand;
-	}
-
-}
-void FillRand(double arr[], const int n, int minRand, int maxRand)
-{
-	minRand *= 100;
-	maxRand *= 100;
-	for (int i = 0; i < n; i++)
-	{
-		arr[i] = rand() % (maxRand - minRand) + minRand;
-		arr[i] /= 100;
+		arr[i] = rand() % 100;
 	}
 
 }
 
-
-void Print(int arr[], const int n)
+void FilRand(double brr[], int SIZE)
 {
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < SIZE; i++)
 	{
-		cout << arr[i] << tab;
+		brr[i] = rand() % 100;
 	}
+
+}
+
+
+template<typename T>
+void Print(T arr[], const int n)
+{
+	for (int i = 0; i < n; i++)cout << arr[i] << "\t";
 	cout << endl;
-
-}
-void Print(double arr[], const int n)
-{
-	for (int i = 0; i < n; i++)
-	{
-		cout << arr[i] << tab;
-	}
-	cout << endl;
-
 }
 
 
-void Sort(int arr[], const int n)
+template<typename T>
+void Sort(T arr[], const int n)
 {
 	for (int i = 0; i < n; i++)
 	{
-		for (int j = 0; j < n; j++)
+		for (int j = i +1; j < n; j++)
 		{
-
-			if (arr[j] > arr[i])
+			if (arr[j] < arr[i])
 			{
-				int buffer = arr[i];
+				T buffer = arr[i];
 				arr[i] = arr[j];
 				arr[j] = buffer;
+
 			}
 		}
 	}
-	
 }
-void Sort(double arr[], const int n)
+
+
+
+template<typename T>
+T Sum(T arr[], int const n)
 {
+	T sum = 0;
 	for (int i = 0; i < n; i++)
 	{
-		for (int j = 0; j < n; j++)
+		sum += arr[i];
+	}
+	return sum;
+
+}
+
+
+template<typename T>
+double Avg(T arr[], int const n)
+{
+	return (double)Sum(arr, n) / n;
+}
+
+
+template<typename T>
+T MinValueIn(T arr[], const int n)
+{
+	T min = arr[0];
+	for (int i = 0; i < n; i++)
+	{
+		if (arr[i] < min)min = arr[i];
+	}
+	return min;
+}
+
+
+
+template<typename T>
+T MaxValueIn(T arr[], const int n)
+{
+	T max = arr[0];
+	for (int i = 0; i < n; i++)
+	{
+		if (arr[i] > max)max = arr[i];
+	}
+	return max;
+}
+
+
+template<typename T>
+void ShiftLeft(T arr[], const int n, const int znachenie)
+{
+
+	for (int i = 0; i < znachenie; i++)
+	{
+		int buffer = arr[0];
+		for (int i = 1; i < n; i++)
 		{
-
-			if (arr[j] > arr[i])
-			{
-				double buffer = arr[i];
-				arr[i] = arr[j];
-				arr[j] = buffer;
-			}
+			arr[i - 1] = arr[i];
 		}
+		arr[n - 1] = buffer;
+
 	}
-	
+
 }
 
-void Sum(int arr[], const int n)
+template<typename T>
+void ShiftRight(T arr[], const int n, const int znachenie)
 {
-	int Sum = 0;
-	for (int i = 0; i < n; i++)
-	{
-		Sum += arr[i];
-	}
-	cout << Sum << tab;
-	cout << endl;
+	ShiftLeft(arr, n, n - znachenie);
 }
-
-
-void Sum(double arr[], const int n)
-{
-	int Sum = 0;
-	for (int i = 0; i < n; i++)
-	{
-		Sum += arr[i];
-	}
-	cout << Sum << tab;
-	cout << endl;
-}
-
-
-
-void SredneeA(int arr[], const int n)
-{
-	int Sum = 0;
-	double SrA;
-	for (int i = 0; i < n; i++)
-	{
-		Sum += arr[i];
-		SrA = (double) Sum / n;
-		
-	}
-	cout << SrA << tab;
-	cout << endl;
-}
-
-
-void SredneeA(double arr[], const int n)
-{
-	double Sum = 0;
-	double SrA;
-	for (int i = 0; i < n; i++)
-	{
-		Sum += arr[i];
-		SrA = Sum / n;
-		
-	}
-	cout << SrA << tab;
-	
-}
-
-
 
 
