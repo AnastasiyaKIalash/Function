@@ -1,13 +1,17 @@
 #include<iostream>
 using namespace std;
 
-
+const int ROWS = 3;
+const int COLS = 4;
 
 void FilRand(int arr[], const int n);
 void FilRand(double arr[], const int n);
+void FilRand(int arr[ROWS][COLS], const int ROWS, const int COLS);
 
 template<typename T>
 void Print(T arr[], const int n);
+
+void Print(int arr[ROWS][COLS], const int ROWS, const int COLS);
 
 template<typename T>
 void Sort(T arr[], const int n);
@@ -71,6 +75,11 @@ void main()
 	cout << MinValueIn(brr, SIZE) << endl;
 	cout << MaxValueIn(brr, SIZE) << endl;
 
+	
+	int i_arr_2[ROWS][COLS];
+	//FilRand(i_arr_2, ROWS, COLS);
+	Print(i_arr_2, ROWS, COLS);
+
 }
 
 void FilRand(int arr[], int n)
@@ -91,6 +100,31 @@ void FilRand(double brr[], int SIZE)
 
 }
 
+void FilRand(int arr[ROWS][COLS], const int ROWS, const int COLS)
+{
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			arr[i][j] = rand() % 100;
+		}
+		
+	}
+	
+}
+
+void Print(int arr[ROWS][COLS], const int ROWS, const int COLS)
+{
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			cout << arr[i][j] << "\t";
+		}
+		cout << endl;
+	}
+	cout << endl;
+}
 
 template<typename T>
 void Print(T arr[], const int n)
