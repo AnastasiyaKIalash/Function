@@ -15,8 +15,8 @@ void Sort(double arr[], const int n);
 void Sum(int arr[], const int n);
 void Sum(double arr[], const int n);
 
-void SredneeA(int arr[], const int n);
-void SredneeA(double arr[], const int n);
+//void SredneeA(int arr[], const int n);
+//void SredneeA(double arr[], const int n);
 
 
 
@@ -33,7 +33,7 @@ void main()
 	Sort(arr, n);
 	Print(arr, n);
 	Sum(arr, n);
-	SredneeA(arr, n);
+	//SredneeA(arr, n);
 
 
 	const int SIZE = 8;
@@ -44,7 +44,7 @@ void main()
 	Sort(brr, SIZE);
 	Print(brr, SIZE);
 	Sum(brr, SIZE);
-	SredneeA(brr, SIZE);
+	//SredneeA(brr, SIZE);
 	
 	
 }
@@ -151,34 +151,34 @@ void Sum(double arr[], const int n)
 
 
 
-void SredneeA(int arr[], const int n)
-{
-	int Sum = 0;
-	double SrA;
-	for (int i = 0; i < n; i++)
-	{
-		Sum += arr[i];
-		SrA = (double) Sum / n;
-		
-	}
-	cout << SrA << tab;
-	cout << endl;
-}
-
-
-void SredneeA(double arr[], const int n)
-{
-	double Sum = 0;
-	double SrA;
-	for (int i = 0; i < n; i++)
-	{
-		Sum += arr[i];
-		SrA = Sum / n;
-		
-	}
-	cout << SrA << tab;
-	
-}
+//void SredneeA(int arr[], const int n)
+//{
+//	int Sum = 0;
+//	double SrA;
+//	for (int i = 0; i < n; i++)
+//	{
+//		Sum += arr[i];
+//		SrA = (double) Sum / n;
+//		
+//	}
+//	cout << SrA << tab;
+//	cout << endl;
+//}
+//
+//
+//void SredneeA(double arr[], const int n)
+//{
+//	double Sum = 0;
+//	double SrA;
+//	for (int i = 0; i < n; i++)
+//	{
+//		Sum += arr[i];
+//		SrA = Sum / n;
+//		
+//	}
+//	cout << SrA << tab;
+//	
+//}
 
 
 
